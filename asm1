@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+WORD num1 = 150; // задаем операнды
+WORD num2 = 78; WORD num3 = 365; WORD denom1 = 3; WORD denom2 = 2; WORD denom3 = 5; DWORD result;
+void main() {
+    __asm { XOR EAX, EAX; // очистка регистров
+    XOR EBX, EBX; XOR ECX, ECX; XOR EDX, EDX;
+    MOV AX, num1; // помещаем num1 в AX
+    XOR DX, DX; // обнуляем DX
+    DIV denom1; // делим AX на denom1
+    ADD ECX, AX; // добавляем результат деления в переменную result
+
+    MOV AX, num2; // помещаем num2 в AX
+    XOR DX, DX;
+    DIV denom2; // делим AX на denom2
+    ADD ECX, AX; // добавляем результат деления в переменную result
+
+    MOV AX, num3; // помещаем num3 в AX
+    XOR DX, DX;
+    DIV denom3; // делим AX на denom3
+    ADD ECX, AX; // добавляем результат деления в переменную result
+
+    MOV result, ECX; // записываем общий результат в переменную result
+};
+printf("%u", result);
+_getch();
+}
